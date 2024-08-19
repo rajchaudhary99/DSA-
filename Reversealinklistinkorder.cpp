@@ -2,28 +2,28 @@
 
 using namespace std;
 
-// Definition of the ListNode structure
+
 struct ListNode {
     int value;
     ListNode* next;
     ListNode(int val) : value(val), next(nullptr) {}
 };
 
-// Function to reverse a portion of the list
+
 ListNode* reverseList(ListNode* head, int k) {
     ListNode* prev = nullptr;
     ListNode* current = head;
     ListNode* next = nullptr;
     int count = 0;
 
-    // Check if there are at least k nodes
+ 
     ListNode* temp = head;
     for (int i = 0; i < k; ++i) {
-        if (temp == nullptr) return head; // Not enough nodes
+        if (temp == nullptr) return head; 
         temp = temp->next;
     }
 
-    // Reverse k nodes
+   
     while (current != nullptr && count < k) {
         next = current->next;
         current->next = prev;
@@ -32,11 +32,11 @@ ListNode* reverseList(ListNode* head, int k) {
         ++count;
     }
 
-    // Return the new head after reversal
+   
     return prev;
 }
 
-// Function to reverse nodes in groups of k
+
 ListNode* reverseKGroup(ListNode* head, int k) {
     ListNode* dummy = new ListNode(0);
     dummy->next = head;
@@ -65,11 +65,11 @@ ListNode* reverseKGroup(ListNode* head, int k) {
     }
 
     ListNode* newHead = dummy->next;
-    delete dummy; // Clean up dummy node
+    delete dummy; 
     return newHead;
 }
 
-// Function to print the linked list
+
 void printList(ListNode* head) {
     while (head != nullptr) {
         cout << head->value << " ";
@@ -79,7 +79,7 @@ void printList(ListNode* head) {
 }
 
 int main() {
-    // Creating a simple linked list: 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8 -> 9
+   
     ListNode* head = new ListNode(1);
     head->next = new ListNode(2);
     head->next->next = new ListNode(3);
@@ -94,13 +94,13 @@ int main() {
     cout << "Original List: ";
     printList(head);
 
-    // Reversing nodes in groups of k
+    
     head = reverseKGroup(head, k);
 
     cout << "List after reversing in groups of " << k << ": ";
     printList(head);
 
-    // Clean up the memory
+ 
     while (head != nullptr) {
         ListNode* temp = head;
         head = head->next;
